@@ -1,0 +1,71 @@
+### FastAPI MVC Template - API Examples
+### Use with REST Client extension in VS Code
+
+@baseUrl = http://localhost:8000
+@contentType = application/json
+
+### Health Check
+GET {{baseUrl}}/health
+
+### Root Endpoint
+GET {{baseUrl}}/
+
+### API Documentation
+GET {{baseUrl}}/docs
+
+### Create a new user
+POST {{baseUrl}}/api/v1/users
+Content-Type: {{contentType}}
+
+{
+  "email": "john.doe@example.com",
+  "username": "johndoe",
+  "full_name": "John Doe",
+  "password": "securepassword123",
+  "bio": "Software developer passionate about Python",
+  "avatar_url": "https://example.com/avatar.jpg"
+}
+
+### Get current user info (requires authentication)
+GET {{baseUrl}}/api/v1/users/me
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+
+### Get user by ID (requires authentication)
+GET {{baseUrl}}/api/v1/users/1
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+
+### Update user (requires authentication)
+PUT {{baseUrl}}/api/v1/users/1
+Content-Type: {{contentType}}
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+
+{
+  "full_name": "John Smith",
+  "bio": "Updated biography"
+}
+
+### Update user password (requires authentication)
+PUT {{baseUrl}}/api/v1/users/1/password
+Content-Type: {{contentType}}
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+
+{
+  "current_password": "securepassword123",
+  "new_password": "newsecurepassword456"
+}
+
+### Get list of users (requires superuser)
+GET {{baseUrl}}/api/v1/users?page=1&per_page=10&active_only=true
+Authorization: Bearer YOUR_SUPERUSER_TOKEN_HERE
+
+### Delete user (requires superuser)
+DELETE {{baseUrl}}/api/v1/users/1
+Authorization: Bearer YOUR_SUPERUSER_TOKEN_HERE
+
+### Test with different log formats
+### Run the server with: LOG_FORMAT=standard uv run python -m app.main
+### Then test any endpoint to see standard format logs
+
+### Test with pretty JSON logs
+### Run the server with: LOG_JSON_INDENT=2 uv run python -m app.main
+### Then test any endpoint to see formatted JSON logs

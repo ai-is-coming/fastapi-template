@@ -1,0 +1,185 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "🚀 Start FastAPI Server",
+            "type": "shell",
+            "command": "uv",
+            "args": ["run", "python", "-m", "app.main"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "env": {
+                    "LOG_FORMAT": "json",
+                    "LOG_LEVEL": "INFO"
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "🧪 Run Tests",
+            "type": "shell",
+            "command": "uv",
+            "args": ["run", "pytest", "-v"],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "📊 Run Tests with Coverage",
+            "type": "shell",
+            "command": "uv",
+            "args": ["run", "pytest", "--cov=app", "--cov-report=html", "--cov-report=term-missing", "-v"],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "🎨 Format Code",
+            "type": "shell",
+            "command": "uv",
+            "args": ["run", "black", "app", "tests"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "📋 Sort Imports",
+            "type": "shell",
+            "command": "uv",
+            "args": ["run", "isort", "app", "tests"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "🔍 Type Check",
+            "type": "shell",
+            "command": "uv",
+            "args": ["run", "mypy", "app"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "🗃️ Run Database Migration",
+            "type": "shell",
+            "command": "uv",
+            "args": ["run", "alembic", "upgrade", "head"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "🆕 Create Database Migration",
+            "type": "shell",
+            "command": "uv",
+            "args": ["run", "alembic", "revision", "--autogenerate", "-m"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "options": {
+                "env": {
+                    "MIGRATION_MESSAGE": "${input:migrationMessage}"
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "📦 Install Dependencies",
+            "type": "shell",
+            "command": "uv",
+            "args": ["sync"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "🧹 Clean Cache",
+            "type": "shell",
+            "command": "find",
+            "args": [".", "-type", "d", "-name", "__pycache__", "-exec", "rm", "-rf", "{}", "+", "2>/dev/null", "||", "true"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "🔧 Format, Sort & Type Check",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "🎨 Format Code",
+                "📋 Sort Imports",
+                "🔍 Type Check"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "migrationMessage",
+            "description": "Migration message",
+            "default": "Auto migration",
+            "type": "promptString"
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "🚀 Run FastAPI App",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "app.main",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                // "LOG_FORMAT": "json",
+                "LOG_FORMAT": "standard",
+                "LOG_LEVEL": "INFO",
+                "ENVIRONMENT": "development",
+                "DATABASE_URL": "postgresql+asyncpg://root:password@127.0.0.1:5432/alice",
+                "DATABASE_ECHO": "true",
+                "OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:4317",
+                "OTEL_SERVICE_NAME": "fastapi-template",
+                "OTEL_SERVICE_VERSION": "1.0.0",
+                "OTEL_CONSOLE_SPANS": "false"
+            },
+            "justMyCode": false,
+            "stopOnEntry": false
+        },
+    ]
+}

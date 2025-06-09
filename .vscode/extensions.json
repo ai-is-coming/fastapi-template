@@ -1,0 +1,62 @@
+{
+    "recommendations": [
+        // Python Development
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "ms-python.mypy-type-checker",
+        "ms-python.pylint",
+        
+        // FastAPI & Web Development
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-typescript-next",
+        
+        // Database
+        "ms-mssql.sql-database-projects-vscode",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-sqlite",
+        "mtxr.sqltools-driver-pg",
+        
+        // Git & Version Control
+        "eamodio.gitlens",
+        "github.vscode-pull-request-github",
+        
+        // Code Quality & Formatting
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig",
+        "streetsidesoftware.code-spell-checker",
+        
+        // Docker & Containers
+        "ms-vscode-remote.remote-containers",
+        "ms-azuretools.vscode-docker",
+        
+        // REST API Testing
+        "humao.rest-client",
+        "rangav.vscode-thunder-client",
+        
+        // Documentation
+        "yzhang.markdown-all-in-one",
+        "davidanson.vscode-markdownlint",
+        
+        // Productivity
+        "ms-vscode.vscode-todo-highlight",
+        "gruntfuggly.todo-tree",
+        "aaron-bond.better-comments",
+        "oderwat.indent-rainbow",
+        "bradlc.vscode-tailwindcss",
+        
+        // Environment & Configuration
+        "mikestead.dotenv",
+        "ms-vscode.vscode-json",
+        
+        // Testing
+        "littlefoxteam.vscode-python-test-adapter",
+        "hbenl.vscode-test-explorer"
+    ],
+    "unwantedRecommendations": [
+        "ms-python.flake8",
+        "ms-python.autopep8"
+    ]
+}
